@@ -12,6 +12,11 @@ This is an AI-powered chatbot built with Next.js, TypeScript, and TailwindCSS. T
 - 🧠 **Context Awareness:** The chatbot remembers previous messages in the conversation for more coherent responses.
 - 🔗 **Powered by OpenRouter.AI:** AI responses are generated using the OpenRouter.AI API.
 
+## 🌐 Live Demo
+
+You can try the chatbot online at:
+🔗 **[Live Demo](https://iritman-chatbot.vercel.app)**
+
 ## 📦 Tech Stack
 
 - **Next.js** (React framework for server-side rendering)
