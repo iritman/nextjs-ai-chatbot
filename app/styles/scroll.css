@@ -1,0 +1,23 @@
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #a0a0a0;
+  border-radius: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #808080;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #a0a0a0 #f0f0f0;
+}
