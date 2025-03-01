@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface Message {
   role: "user" | "assistant";
@@ -25,7 +26,8 @@ const useChat = () => {
         { role: "assistant", content: response.data.result },
       ]);
     } catch (error) {
-      console.error("Error sending message:", error);
+      // console.error("Error sending prompt:", error);
+      toast.error("Error sending prompt");
     } finally {
       setIsLoading(false);
     }
