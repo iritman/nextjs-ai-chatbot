@@ -1,10 +1,14 @@
 'use client';
 
+import {
+  DownloadIcon, ReloadIcon,
+  RocketIcon
+} from "@radix-ui/react-icons";
 import { Heading, Spinner, Theme } from "@radix-ui/themes";
-import { RocketIcon, DownloadIcon, ReloadIcon } from "@radix-ui/react-icons"
 import "@radix-ui/themes/styles.css";
 import { useEffect, useRef, useState } from "react";
 import ChatMessage from "./components/ChatMessage";
+import Contact from "./components/Contact";
 import DarkModeToggle from "./components/DarkModeToggle";
 import useChat from "./hooks/useChat";
 
@@ -123,6 +127,8 @@ export default function Home() {
               </div>
             </button>
           </div>
+
+          <Contact />
         </div>
       </div>
     </Theme>
