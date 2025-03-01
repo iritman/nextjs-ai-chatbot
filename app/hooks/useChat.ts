@@ -7,6 +7,12 @@ interface Message {
   content: string;
 }
 
+const getChatContent = (messages: Message[], userLabel: string) => {
+  return messages
+    .map((msg) => `${msg.role === "user" ? userLabel : "AI"}: ${msg.content}`)
+    .join("\n");
+};
+
 const useChat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,6 +25,7 @@ const useChat = () => {
       const response = await axios.post("/api/chat", {
         prompt,
         imageUrl,
+        chatContent: getChatContent(messages, "User"),
       });
 
       setMessages((prev) => [
@@ -34,9 +41,7 @@ const useChat = () => {
   };
 
   const exportChat = () => {
-    const chatContent = messages
-      .map((msg) => `${msg.role === "user" ? "You" : "AI"}: ${msg.content}`)
-      .join("\n");
+    const chatContent = getChatContent(messages, "You");
     const blob = new Blob([chatContent], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");

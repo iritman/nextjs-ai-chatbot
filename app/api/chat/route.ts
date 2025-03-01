@@ -4,6 +4,7 @@ import axios from "axios";
 interface PromptRequest {
   prompt: string;
   imageUrl?: string;
+  chatContent?: string;
 }
 
 export async function POST(request: Request) {
@@ -17,7 +18,8 @@ export async function POST(request: Request) {
       );
     }
 
-    const { prompt, imageUrl }: PromptRequest = await request.json();
+    const { prompt, imageUrl, chatContent }: PromptRequest =
+      await request.json();
 
     if (!prompt || typeof prompt !== "string") {
       return NextResponse.json(
@@ -51,6 +53,14 @@ export async function POST(request: Request) {
       {
         model: "google/gemini-2.0-flash-thinking-exp-1219:free",
         messages: [
+          {
+            role: "system",
+            content: `To respond to the user's message, consider this text as a reference to their previous conversation
+            ---
+            ${chatContent}
+            ---
+            `,
+          },
           {
             role: "user",
             content,
