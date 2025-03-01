@@ -1,6 +1,7 @@
 'use client';
 
 import { Heading, Spinner, Theme } from "@radix-ui/themes";
+import { RocketIcon, DownloadIcon, ReloadIcon } from "@radix-ui/react-icons"
 import "@radix-ui/themes/styles.css";
 import { useEffect, useRef, useState } from "react";
 import ChatMessage from "./components/ChatMessage";
@@ -16,7 +17,7 @@ export default function Home() {
   const [theme, setTheme] = useState<'light' | 'dark'>("light");
   const [prompt, setPrompt] = useState('');
   const [imageUrl, setImageUrl] = useState('');
-  const { messages, isLoading, sendMessage, exportChat } = useChat();
+  const { messages, isLoading, sendMessage, clearChat, exportChat } = useChat();
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -50,7 +51,7 @@ export default function Home() {
     <Theme appearance={theme}>
       <div className="min-h-screen flex flex-col items-center p-4">
         <div className="max-w-2xl w-full flex flex-col">
-          {/* هدر */}
+
           <div className="flex justify-between items-center mb-4">
             <Heading className="text-2xl font-bold dark:text-white">
               Chat with AI
@@ -86,21 +87,42 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="p-2 bg-blue-500 cursor-pointer text-white 
-                text-center rounded-lg disabled:bg-blue-300 
+                className="p-2 bg-blue-500 hover:bg-blue-600 text-white 
+                cursor-pointer rounded-lg disabled:bg-blue-300 
                 flex items-center justify-center"
               >
-                {isLoading ? <Spinner size="3" /> : 'Send'}
+                <div className="flex flex-row gap-2 items-center">
+                  <RocketIcon />
+                  {isLoading ? <Spinner size="3" /> : 'Send'}
+                </div>
               </button>
             </form>
           </div>
 
-          <button
-            onClick={exportChat}
-            className="mt-4 p-2 cursor-pointer bg-green-500 text-white rounded-lg"
-          >
-            Export Chat
-          </button>
+          <div className="flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0 mt-4 w-full">
+            <button
+              onClick={clearChat}
+              className="p-2 w-full sm:w-1/2 rounded-lg cursor-pointer
+              bg-orange-500 text-white hover:bg-orange-600
+              flex items-center justify-center"
+            >
+              <div className="flex flex-row gap-2 items-center">
+                <ReloadIcon />
+                Clear Chat
+              </div>
+            </button>
+            <button
+              onClick={exportChat}
+              className="p-2 w-full sm:w-1/2 rounded-lg cursor-pointer
+              bg-green-500 text-white hover:bg-green-600
+              flex items-center justify-center"
+            >
+              <div className="flex flex-row gap-2 items-center">
+                <DownloadIcon />
+                Export Chat
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </Theme>

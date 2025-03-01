@@ -40,6 +40,8 @@ const useChat = () => {
     }
   };
 
+  const clearChat = () => setMessages([]);
+
   const exportChat = () => {
     const chatContent = getChatContent(messages, "You");
     const blob = new Blob([chatContent], { type: "text/plain" });
@@ -50,7 +52,7 @@ const useChat = () => {
     link.click();
   };
 
-  return { messages, isLoading, sendMessage, exportChat };
+  return { messages, isLoading, sendMessage, clearChat, exportChat };
 };
 
 export default useChat;
